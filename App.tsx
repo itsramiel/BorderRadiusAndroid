@@ -1,20 +1,24 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [isToggled, setIsToggled] = useState(true);
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
+      <Pressable
+        onPress={() => setIsToggled(!isToggled)}
+        style={{ backgroundColor: 'blue' }}
+      >
+        <View
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            backgroundColor: isToggled ? 'red' : 'transparent',
+          }}
+        />
+      </Pressable>
     </View>
   );
 }
@@ -22,6 +26,8 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
